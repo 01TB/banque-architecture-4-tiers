@@ -16,11 +16,11 @@ public class HistoriqueStatutPret {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_statut", nullable = false)
-    private com.management.comptemanagement.entity.StatutPret idStatut;
+    private StatutPret idStatut;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_pret", nullable = false)
-    private com.management.comptemanagement.entity.Pret idPret;
+    private Pret idPret;
 
     public Integer getId() {
         return id;
@@ -38,19 +38,19 @@ public class HistoriqueStatutPret {
         this.dateModification = dateModification;
     }
 
-    public com.management.comptemanagement.entity.StatutPret getIdStatut() {
+    public StatutPret getIdStatut() {
         return idStatut;
     }
 
-    public void setIdStatut(com.management.comptemanagement.entity.StatutPret idStatut) {
+    public void setIdStatut(StatutPret idStatut) {
         this.idStatut = idStatut;
     }
 
-    public com.management.comptemanagement.entity.Pret getIdPret() {
+    public Pret getIdPret() {
         return idPret;
     }
 
-    public void setIdPret(com.management.comptemanagement.entity.Pret idPret) {
+    public void setIdPret(Pret idPret) {
         this.idPret = idPret;
     }
 

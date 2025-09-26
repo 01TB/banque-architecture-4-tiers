@@ -24,7 +24,7 @@ public class MouvementCompteCourant {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_type_mouvement", nullable = false)
-    private com.management.comptemanagement.entity.TypeMouvementCompteCourant idTypeMouvement;
+    private TypeMouvementCompteCourant idTypeMouvement;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_compte_courant", nullable = false)
@@ -62,11 +62,11 @@ public class MouvementCompteCourant {
         this.dateMouvement = dateMouvement;
     }
 
-    public com.management.comptemanagement.entity.TypeMouvementCompteCourant getIdTypeMouvement() {
+    public TypeMouvementCompteCourant getIdTypeMouvement() {
         return idTypeMouvement;
     }
 
-    public void setIdTypeMouvement(com.management.comptemanagement.entity.TypeMouvementCompteCourant idTypeMouvement) {
+    public void setIdTypeMouvement(TypeMouvementCompteCourant idTypeMouvement) {
         this.idTypeMouvement = idTypeMouvement;
     }
 

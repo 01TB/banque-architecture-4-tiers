@@ -29,7 +29,7 @@ public class CompteCourant {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_statut", nullable = false)
-    private com.management.comptemanagement.entity.StatutCompte idStatut;
+    private StatutCompte idStatut;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_client", nullable = false)
@@ -75,11 +75,11 @@ public class CompteCourant {
         this.dateFermeture = dateFermeture;
     }
 
-    public com.management.comptemanagement.entity.StatutCompte getIdStatut() {
+    public StatutCompte getIdStatut() {
         return idStatut;
     }
 
-    public void setIdStatut(com.management.comptemanagement.entity.StatutCompte idStatut) {
+    public void setIdStatut(StatutCompte idStatut) {
         this.idStatut = idStatut;
     }
 

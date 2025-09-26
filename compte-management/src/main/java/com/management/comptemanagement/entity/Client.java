@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "client", schema = "public", uniqueConstraints = {
@@ -37,6 +39,15 @@ public class Client {
 
     @Column(name = "date_creation", nullable = false)
     private Instant dateCreation;
+
+    @OneToOne(mappedBy = "idClient")
+    private CompteCourant compteCourant;
+
+    @OneToOne(mappedBy = "idClient")
+    private CompteDepot compteDepot;
+
+    @OneToMany(mappedBy = "idClient")
+    private Set<Pret> prets = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -108,6 +119,30 @@ public class Client {
 
     public void setDateCreation(Instant dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public CompteCourant getCompteCourant() {
+        return compteCourant;
+    }
+
+    public void setCompteCourant(CompteCourant compteCourant) {
+        this.compteCourant = compteCourant;
+    }
+
+    public CompteDepot getCompteDepot() {
+        return compteDepot;
+    }
+
+    public void setCompteDepot(CompteDepot compteDepot) {
+        this.compteDepot = compteDepot;
+    }
+
+    public Set<Pret> getPrets() {
+        return prets;
+    }
+
+    public void setPrets(Set<Pret> prets) {
+        this.prets = prets;
     }
 
 }
