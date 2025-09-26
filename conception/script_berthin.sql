@@ -1,3 +1,5 @@
+-- DATABASE = banque_berthin
+
 CREATE TABLE client(
    id INTEGER,
    matricule VARCHAR(50) NOT NULL,
@@ -88,6 +90,7 @@ CREATE TABLE historique_statut_pret(
 CREATE TABLE compte_courant(
    id INTEGER,
    numero_compte VARCHAR(50)  NOT NULL,
+   solde NUMERIC(15,2) NOT NULL,
    date_ouverture TIMESTAMP NOT NULL,
    date_fermeture TIMESTAMP,
    id_statut INTEGER NOT NULL,
