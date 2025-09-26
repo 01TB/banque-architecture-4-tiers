@@ -2,6 +2,7 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig" migrateIndexesAndConstraints="true" reUseTableSchema="true">
     <option name="migrateIndexesAndConstraints" value="true" />
+    <option name="packageNameForExtractSuperclass" value="com.management.comptemanagement.service" />
     <option name="reLastEntityCreationPackage" value="src/main/java/com/management/comptemanagement/entity" />
     <option name="reverseEngineeringLastDbConnectionId" value="d9373c43-1445-4d93-b8d9-3a6756ce2081" />
   </component>
