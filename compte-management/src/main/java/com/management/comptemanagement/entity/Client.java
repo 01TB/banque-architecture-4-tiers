@@ -1,0 +1,113 @@
+package com.management.comptemanagement.entity;
+
+import jakarta.persistence.*;
+
+import java.time.Instant;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "client", schema = "public", uniqueConstraints = {
+        @UniqueConstraint(name = "client_matricule_key", columnNames = {"matricule"})
+})
+public class Client {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @Column(name = "matricule", nullable = false, length = 50)
+    private String matricule;
+
+    @Column(name = "nom", nullable = false)
+    private String nom;
+
+    @Column(name = "prenom", nullable = false)
+    private String prenom;
+
+    @Column(name = "date_naissance", nullable = false)
+    private LocalDate dateNaissance;
+
+    @Column(name = "adresse", nullable = false)
+    private String adresse;
+
+    @Column(name = "email", nullable = false, length = 100)
+    private String email;
+
+    @Column(name = "telephone", nullable = false, length = 50)
+    private String telephone;
+
+    @Column(name = "date_creation", nullable = false)
+    private Instant dateCreation;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getMatricule() {
+        return matricule;
+    }
+
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public LocalDate getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(LocalDate dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Instant getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Instant dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+}

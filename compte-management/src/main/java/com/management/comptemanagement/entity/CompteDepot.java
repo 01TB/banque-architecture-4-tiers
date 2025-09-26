@@ -1,0 +1,82 @@
+package com.management.comptemanagement.entity;
+
+import jakarta.persistence.*;
+
+import java.time.Instant;
+
+@Entity
+@Table(name = "compte_depot", schema = "public", uniqueConstraints = {
+        @UniqueConstraint(name = "compte_depot_numero_compte_key", columnNames = {"numero_compte"}),
+        @UniqueConstraint(name = "compte_depot_id_client_key", columnNames = {"id_client"})
+})
+public class CompteDepot {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @Column(name = "numero_compte", nullable = false, length = 50)
+    private String numeroCompte;
+
+    @Column(name = "date_ouverture", nullable = false)
+    private Instant dateOuverture;
+
+    @Column(name = "date_fermeture")
+    private Instant dateFermeture;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_statut", nullable = false)
+    private com.management.comptemanagement.entity.StatutCompte idStatut;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_client", nullable = false)
+    private Client idClient;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNumeroCompte() {
+        return numeroCompte;
+    }
+
+    public void setNumeroCompte(String numeroCompte) {
+        this.numeroCompte = numeroCompte;
+    }
+
+    public Instant getDateOuverture() {
+        return dateOuverture;
+    }
+
+    public void setDateOuverture(Instant dateOuverture) {
+        this.dateOuverture = dateOuverture;
+    }
+
+    public Instant getDateFermeture() {
+        return dateFermeture;
+    }
+
+    public void setDateFermeture(Instant dateFermeture) {
+        this.dateFermeture = dateFermeture;
+    }
+
+    public com.management.comptemanagement.entity.StatutCompte getIdStatut() {
+        return idStatut;
+    }
+
+    public void setIdStatut(com.management.comptemanagement.entity.StatutCompte idStatut) {
+        this.idStatut = idStatut;
+    }
+
+    public Client getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(Client idClient) {
+        this.idClient = idClient;
+    }
+
+}
