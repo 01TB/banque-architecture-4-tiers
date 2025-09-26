@@ -21,7 +21,6 @@ CREATE TABLE statut_compte(
 CREATE TABLE compte_depot(
    id INTEGER,
    numero_compte VARCHAR(50) NOT NULL,
-   solde NUMERIC(15,2) NOT NULL,
    date_ouverture TIMESTAMP NOT NULL,
    date_fermeture TIMESTAMP,
    id_statut INTEGER NOT NULL,
@@ -78,7 +77,7 @@ CREATE TABLE type_mouvement_compte_courant(
 
 CREATE TABLE historique_statut_pret(
    id INTEGER,
-   date_modification VARCHAR(50),
+   date_modification TIMESTAMP NOT NULL,
    id_statut INTEGER NOT NULL,
    id_pret INTEGER NOT NULL,
    PRIMARY KEY(id),
@@ -89,7 +88,6 @@ CREATE TABLE historique_statut_pret(
 CREATE TABLE compte_courant(
    id INTEGER,
    numero_compte VARCHAR(50)  NOT NULL,
-   solde NUMERIC(15,2) NOT NULL,
    date_ouverture TIMESTAMP NOT NULL,
    date_fermeture TIMESTAMP,
    id_statut INTEGER NOT NULL,
