@@ -5,7 +5,7 @@ Java => Java EJB
 Java => Dotnet Web service
 
 Server 1 Java  : Gestion Compte Courant => Solde
-Server 2 Dotnet/Pret  : Gestion Depot => interet 2% / ANS, retrait: 1 fois par mois, pas + 50 %
+Server 2 Dotnet/Java  : Gestion Depot => interet 2% / ANS, retrait: 1 fois par mois, pas + 50 %
 Server 3 Dotnet  : Gestion Pret => interet 24% / ANS
 Server 4 Java : Centralisateur
 
