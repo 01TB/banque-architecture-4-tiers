@@ -40,13 +40,13 @@ public class Client {
     @Column(name = "date_creation", nullable = false)
     private Instant dateCreation;
 
-    @OneToOne(mappedBy = "idClient")
+    @OneToOne(mappedBy = "idClient", cascade = CascadeType.ALL, orphanRemoval = true)
     private CompteCourant compteCourant;
 
-    @OneToOne(mappedBy = "idClient")
+    @OneToOne(mappedBy = "idClient", cascade = CascadeType.ALL, orphanRemoval = true)
     private CompteDepot compteDepot;
 
-    @OneToMany(mappedBy = "idClient")
+    @OneToMany(mappedBy = "idClient", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Pret> prets = new LinkedHashSet<>();
 
     public Integer getId() {

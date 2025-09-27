@@ -31,7 +31,7 @@ public class CompteCourant {
     @JoinColumn(name = "id_statut", nullable = false)
     private StatutCompte idStatut;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_client", nullable = false)
     private Client idClient;
 

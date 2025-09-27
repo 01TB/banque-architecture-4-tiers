@@ -1,3 +1,5 @@
+http://localhost:8090/compte-management-1.0-SNAPSHOT/api
+
 ==============================
 ClientController
 ==============================
