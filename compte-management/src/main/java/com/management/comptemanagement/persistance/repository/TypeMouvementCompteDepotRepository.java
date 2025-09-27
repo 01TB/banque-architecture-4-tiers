@@ -1,4 +1,4 @@
-package com.management.comptemanagement.service.repository;
+package com.management.comptemanagement.persistance.repository;
 
 import com.management.comptemanagement.entity.TypeMouvementCompteDepot;
 import jakarta.ejb.Local;

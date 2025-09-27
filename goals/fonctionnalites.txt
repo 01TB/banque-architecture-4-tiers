@@ -1,14 +1,25 @@
+CompteCourantService
+CompteDepotService
+ClientService
+
 - (1) Calculer solde brute compte courant (à l'instant T)
+
 - (2) Calculer solde brute compte dépôt (à l'instant T)
+
 - (3) Calculer intérêt gagné au sein du compte dépôt (jusqu'à l'instant T)
+
 - (4) Calculer solde AVEC INTERET compte dépôt (à l'instant T)
     - somme de :
         - (2) solde brute compte dépôt (à l'instant T) 
         - (3) intérêt jusqu'à l'instant T
+
 - (5) Calculer somme prêts
+
 - (6) Créditer compte courant
+
 - (7) Débiter compte courant
     - (1) Calcul solde brute compte courant
+
 - (8) solde totale (simplifie)
     - somme de :
         - (1) solde brute compte courant
