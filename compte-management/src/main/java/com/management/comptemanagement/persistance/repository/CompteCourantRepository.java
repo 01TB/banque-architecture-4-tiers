@@ -12,4 +12,6 @@ public interface CompteCourantRepository {
     CompteCourant save(CompteCourant compteCourant);
     CompteCourant update(CompteCourant compteCourant);
     void delete(int id);
+
+    CompteCourant findByIdClient(int idClient);
 }

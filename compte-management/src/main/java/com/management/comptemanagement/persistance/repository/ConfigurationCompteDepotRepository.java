@@ -12,4 +12,6 @@ public interface ConfigurationCompteDepotRepository {
     ConfigurationCompteDepot save(ConfigurationCompteDepot configurationCompteDepot);
     ConfigurationCompteDepot update(ConfigurationCompteDepot configurationCompteDepot);
     void delete(int id);
+
+    ConfigurationCompteDepot findLatestByCompteDepotId(int idCompteDepot);
 }

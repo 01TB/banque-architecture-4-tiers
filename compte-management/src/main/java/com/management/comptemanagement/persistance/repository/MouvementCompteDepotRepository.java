@@ -12,4 +12,9 @@ public interface MouvementCompteDepotRepository {
     MouvementCompteDepot save(MouvementCompteDepot mouvementCompteDepot);
     MouvementCompteDepot update(MouvementCompteDepot mouvementCompteDepot);
     void delete(int id);
+
+    List<MouvementCompteDepot> findByIdCompteDepot(int idCompteDepot);
+    int countRetraitsThisMonth(int idCompteDepot);
+
+    List<MouvementCompteDepot> findMouvementsHorsInterets(int idCompteDepot);
 }

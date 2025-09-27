@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Stateless
@@ -43,6 +45,44 @@ public class MouvementCompteDepotRepositoryImp implements MouvementCompteDepotRe
         if (client != null) {
             em.remove(client);
         }
+    }
+
+    @Override
+    public List<MouvementCompteDepot> findByIdCompteDepot(int idCompteDepot) {
+        TypedQuery<MouvementCompteDepot> query = em.createQuery(
+                "SELECT m FROM MouvementCompteDepot m WHERE m.idCompteDepot.id = :idCompteDepot ORDER BY m.dateMouvement",
+                MouvementCompteDepot.class);
+        query.setParameter("idCompteDepot", idCompteDepot);
+        return query.getResultList();
+    }
+
+    @Override
+    public int countRetraitsThisMonth(int idCompteDepot) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime startOfMonth = now.withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0);
+        LocalDateTime endOfMonth = now.withDayOfMonth(now.toLocalDate().lengthOfMonth()).withHour(23).withMinute(59).withSecond(59);
+
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(m) FROM MouvementCompteDepot m WHERE m.idCompteDepot.id = :idCompteDepot " +
+                        "AND m.idTypeMouvement.id = 2 " + // Retrait
+                        "AND m.dateMouvement BETWEEN :startOfMonth AND :endOfMonth",
+                Long.class);
+        query.setParameter("idCompteDepot", idCompteDepot);
+        query.setParameter("startOfMonth", startOfMonth.atZone(ZoneId.systemDefault()).toInstant());
+        query.setParameter("endOfMonth", endOfMonth.atZone(ZoneId.systemDefault()).toInstant());
+
+        return query.getSingleResult().intValue();
+    }
+
+    @Override
+    public List<MouvementCompteDepot> findMouvementsHorsInterets(int idCompteDepot) {
+        TypedQuery<MouvementCompteDepot> query = em.createQuery(
+                "SELECT m FROM MouvementCompteDepot m WHERE m.idCompteDepot.id = :idCompteDepot " +
+                        "AND m.idTypeMouvement.id IN (1, 2) " + // Dépôt et Retrait seulement (hors intérêts)
+                        "ORDER BY m.dateMouvement",
+                MouvementCompteDepot.class);
+        query.setParameter("idCompteDepot", idCompteDepot);
+        return query.getResultList();
     }
 }
 

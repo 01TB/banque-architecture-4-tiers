@@ -4,6 +4,7 @@ import com.management.comptemanagement.entity.CompteCourant;
 import com.management.comptemanagement.persistance.repository.CompteCourantRepository;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
@@ -42,6 +43,20 @@ public class CompteCourantRepositoryImp implements CompteCourantRepository {
         CompteCourant compteCourant = findById(id);
         if (compteCourant != null) {
             em.remove(compteCourant);
+        }
+    }
+
+
+    // Dans CompteCourantRepositoryImp.java
+    @Override
+    public CompteCourant findByIdClient(int idClient) {
+        TypedQuery<CompteCourant> query = em.createQuery(
+                "SELECT c FROM CompteCourant c WHERE c.idClient.id = :idClient", CompteCourant.class);
+        query.setParameter("idClient", idClient);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         }
     }
 }

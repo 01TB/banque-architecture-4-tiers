@@ -27,7 +27,7 @@ public class Pret {
     @Column(name = "date_fermeture")
     private Instant dateFermeture;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_client", nullable = false)
     private Client idClient;
 

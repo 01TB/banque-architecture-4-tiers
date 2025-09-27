@@ -23,7 +23,7 @@ public class ConfigurationCompteDepot {
     @Column(name = "date_application", nullable = false)
     private Instant dateApplication;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_compte_depot", nullable = false)
     private CompteDepot idCompteDepot;
 

@@ -2,7 +2,6 @@ package com.management.comptemanagement.persistance.repository;
 
 import com.management.comptemanagement.entity.Client;
 import jakarta.ejb.Local;
-
 import java.util.List;
 
 @Local
@@ -12,4 +11,7 @@ public interface ClientRepository {
     Client save(Client client);
     Client update(Client client);
     void delete(int id);
+
+    // Ajout de la méthode de recherche par critères
+    List<Client> findByCriteria(String nom, String prenom, String email);
 }

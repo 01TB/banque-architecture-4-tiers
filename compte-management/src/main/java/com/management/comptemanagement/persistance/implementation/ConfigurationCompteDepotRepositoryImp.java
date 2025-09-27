@@ -4,6 +4,7 @@ import com.management.comptemanagement.entity.ConfigurationCompteDepot;
 import com.management.comptemanagement.persistance.repository.ConfigurationCompteDepotRepository;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
@@ -42,6 +43,20 @@ public class ConfigurationCompteDepotRepositoryImp implements ConfigurationCompt
         ConfigurationCompteDepot configurationCompteDepot = findById(id);
         if (configurationCompteDepot != null) {
             em.remove(configurationCompteDepot);
+        }
+    }
+
+    @Override
+    public ConfigurationCompteDepot findLatestByCompteDepotId(int idCompteDepot) {
+        TypedQuery<ConfigurationCompteDepot> query = em.createQuery(
+                "SELECT c FROM ConfigurationCompteDepot c WHERE c.idCompteDepot.id = :idCompteDepot ORDER BY c.dateApplication DESC",
+                ConfigurationCompteDepot.class);
+        query.setParameter("idCompteDepot", idCompteDepot);
+        query.setMaxResults(1);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         }
     }
 }

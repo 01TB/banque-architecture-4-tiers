@@ -21,11 +21,11 @@ public class RemboursementPret {
     @Column(name = "date_paiement", nullable = false)
     private Instant datePaiement;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_mouvement_compte_courant", nullable = false)
     private MouvementCompteCourant idMouvementCompteCourant;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_pret", nullable = false)
     private Pret idPret;
 

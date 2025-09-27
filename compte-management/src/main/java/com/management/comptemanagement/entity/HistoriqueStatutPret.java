@@ -14,11 +14,11 @@ public class HistoriqueStatutPret {
     @Column(name = "date_modification", nullable = false)
     private Instant dateModification;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_statut", nullable = false)
     private StatutPret idStatut;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_pret", nullable = false)
     private Pret idPret;
 

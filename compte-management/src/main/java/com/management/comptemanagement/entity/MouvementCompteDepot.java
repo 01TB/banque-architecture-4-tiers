@@ -15,18 +15,17 @@ public class MouvementCompteDepot {
     @Column(name = "montant", nullable = false, precision = 15, scale = 2)
     private BigDecimal montant;
 
-    @Lob
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "text")
     private String description;
 
     @Column(name = "date_mouvement", nullable = false)
     private Instant dateMouvement;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_type_mouvement", nullable = false)
     private TypeMouvementCompteDepot idTypeMouvement;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_compte_depot", nullable = false)
     private CompteDepot idCompteDepot;
 

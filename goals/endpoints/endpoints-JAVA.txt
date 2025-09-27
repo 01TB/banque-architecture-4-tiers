@@ -1,0 +1,316 @@
+==============================
+ClientController
+==============================
+
+
+GET /clients
+Arguments : aucun
+Fonction : Récupère tous les clients
+Retourne : ClientListResponse
+Schéma JSON :
+{
+	"clients": [
+		{
+			"id": 1,
+			"matricule": "C12345",
+			"nom": "Dupont",
+			"prenom": "Jean",
+			"dateNaissance": "1980-01-01",
+			"adresse": "1 rue de Paris",
+			"email": "jean.dupont@email.com",
+			"telephone": "0601020304",
+			"dateCreation": "2025-09-27T10:00:00Z"
+		}
+	],
+	"count": 1,
+	"message": "Opération réussie"
+}
+
+GET /clients/{id}
+Arguments : id (path)
+Fonction : Récupère un client par son ID
+Retourne : ClientResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"id": 1,
+	"matricule": "C12345",
+	"nom": "Dupont",
+	"prenom": "Jean",
+	"dateNaissance": "1980-01-01",
+	"adresse": "1 rue de Paris",
+	"email": "jean.dupont@email.com",
+	"telephone": "0601020304",
+	"dateCreation": "2025-09-27T10:00:00Z"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Client non trouvé",
+	"success": false
+}
+
+POST /clients
+Arguments : ClientRequest (body)
+Fonction : Crée un nouveau client
+Retourne : ClientResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"id": 2,
+	"matricule": "C67890",
+	"nom": "Martin",
+	"prenom": "Alice",
+	"dateNaissance": "1990-05-10",
+	"adresse": "2 avenue Lyon",
+	"email": "alice.martin@email.com",
+	"telephone": "0605060708",
+	"dateCreation": "2025-09-27T11:00:00Z"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Erreur lors de la création du client",
+	"success": false
+}
+
+PUT /clients/{id}
+Arguments : id (path), ClientRequest (body)
+Fonction : Met à jour un client existant
+Retourne : ClientResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"id": 1,
+	"matricule": "C12345",
+	"nom": "Dupont",
+	"prenom": "Jean",
+	"dateNaissance": "1980-01-01",
+	"adresse": "Nouvelle adresse",
+	"email": "jean.dupont@email.com",
+	"telephone": "0601020304",
+	"dateCreation": "2025-09-27T10:00:00Z"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Erreur lors de la mise à jour du client",
+	"success": false
+}
+
+DELETE /clients/{id}
+Arguments : id (path)
+Fonction : Supprime un client
+Retourne : SuccessResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"message": "Suppression réussie",
+	"success": true
+}
+Schéma JSON (erreur) :
+{
+	"error": "Client non trouvé",
+	"success": false
+}
+
+GET /clients/{idClient}/solde-avec-interet
+Arguments : idClient (path)
+Fonction : Calcule le solde du client avec intérêts
+Retourne : SoldeResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"solde": 1500.75,
+	"message": "Opération réussie"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Client non trouvé",
+	"success": false
+}
+
+GET /clients/{idClient}/solde-totale
+Arguments : idClient (path)
+Fonction : Calcule le solde total du client
+Retourne : SoldeResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"solde": 2500.00,
+	"message": "Opération réussie"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Client non trouvé",
+	"success": false
+}
+
+GET /clients/search?nom&prenom&email
+Arguments : nom, prenom, email (query)
+Fonction : Recherche des clients selon les critères
+Retourne : ClientListResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"clients": [
+		{
+			"id": 1,
+			"matricule": "C12345",
+			"nom": "Dupont",
+			"prenom": "Jean",
+			"dateNaissance": "1980-01-01",
+			"adresse": "1 rue de Paris",
+			"email": "jean.dupont@email.com",
+			"telephone": "0601020304",
+			"dateCreation": "2025-09-27T10:00:00Z"
+		}
+	],
+	"count": 1,
+	"message": "Opération réussie"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Aucun client trouvé",
+	"success": false
+}
+
+==============================
+CompteCourantController
+==============================
+
+
+GET /comptes-courants/client/{idClient}/solde-brut
+Arguments : idClient (path)
+Fonction : Calcule le solde brut du compte courant du client
+Retourne : SoldeResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"solde": 1200.50,
+	"message": "Opération réussie"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Compte courant non trouvé",
+	"success": false
+}
+
+POST /comptes-courants/client/{idClient}/crediter
+Arguments : idClient (path), MouvementRequest (body)
+Fonction : Créditer le compte courant du client
+Retourne : SuccessResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"message": "Crédit effectué avec succès",
+	"success": true
+}
+Schéma JSON (erreur) :
+{
+	"error": "Erreur lors du crédit",
+	"success": false
+}
+
+POST /comptes-courants/client/{idClient}/debiter
+Arguments : idClient (path), MouvementRequest (body)
+Fonction : Débiter le compte courant du client
+Retourne : SuccessResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"message": "Débit effectué avec succès",
+	"success": true
+}
+Schéma JSON (erreur) :
+{
+	"error": "Erreur lors du débit",
+	"success": false
+}
+
+==============================
+CompteDepotController
+==============================
+
+
+GET /comptes-depot/client/{idClient}/solde-brut
+Arguments : idClient (path)
+Fonction : Calcule le solde brut du compte dépôt du client
+Retourne : SoldeResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"solde": 800.00,
+	"message": "Opération réussie"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Compte dépôt non trouvé",
+	"success": false
+}
+
+GET /comptes-depot/client/{idClient}/interets
+Arguments : idClient (path)
+Fonction : Calcule les intérêts gagnés sur le compte dépôt
+Retourne : SoldeResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"solde": 50.25,
+	"message": "Opération réussie"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Compte dépôt non trouvé",
+	"success": false
+}
+
+GET /comptes-depot/client/{idClient}/solde-reel
+Arguments : idClient (path)
+Fonction : Calcule le solde réel du compte dépôt
+Retourne : SoldeResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"solde": 850.25,
+	"message": "Opération réussie"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Compte dépôt non trouvé",
+	"success": false
+}
+
+POST /comptes-depot/client/{idClient}/crediter
+Arguments : idClient (path), MouvementRequest (body)
+Fonction : Créditer le compte dépôt du client
+Retourne : SuccessResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"message": "Dépôt effectué avec succès",
+	"success": true
+}
+Schéma JSON (erreur) :
+{
+	"error": "Erreur lors du dépôt",
+	"success": false
+}
+
+POST /comptes-depot/client/{idClient}/debiter
+Arguments : idClient (path), MouvementRequest (body)
+Fonction : Débiter le compte dépôt du client
+Retourne : SuccessResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"message": "Débit effectué avec succès",
+	"success": true
+}
+Schéma JSON (erreur) :
+{
+	"error": "Erreur lors du débit",
+	"success": false
+}
+
+==============================
+PretController
+==============================
+
+
+GET /prets/client/{idClient}/somme
+Arguments : idClient (path)
+Fonction : Calcule la somme totale des prêts du client
+Retourne : SoldeResponse ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"solde": 5000.00,
+	"message": "Opération réussie"
+}
+Schéma JSON (erreur) :
+{
+	"error": "Aucun prêt trouvé",
+	"success": false
+}

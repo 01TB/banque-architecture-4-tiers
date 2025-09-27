@@ -3,6 +3,7 @@ package com.management.comptemanagement.persistance.repository;
 import com.management.comptemanagement.entity.Pret;
 import jakarta.ejb.Local;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Local
@@ -12,4 +13,6 @@ public interface PretRepository {
     Pret save(Pret pret);
     Pret update(Pret pret);
     void delete(int id);
+
+    BigDecimal findSommePretsByClientId(int idClient);
 }
