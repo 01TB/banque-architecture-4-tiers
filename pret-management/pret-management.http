@@ -1,0 +1,6 @@
+@pret_management_HostAddress = http://localhost:5257
+
+GET {{pret_management_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
