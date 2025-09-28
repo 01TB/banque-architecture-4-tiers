@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using pret_management.Data; // Adaptez le namespace selon votre projet
+using pret_management.Data;
+using pret_management.Mappings; // Adaptez le namespace selon votre projet
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,12 @@ builder.Services.AddOpenApi();
 // ✅ Configuration de la base de données
 builder.Services.AddDbContext<BanqueDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Configuration d'AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+// Configuration de la gestion des erreurs
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
