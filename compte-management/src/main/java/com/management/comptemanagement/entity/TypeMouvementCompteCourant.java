@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 })
 public class TypeMouvementCompteCourant {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

@@ -1,3 +1,80 @@
+==========================================================
+Explication des structures des body et des retours JSON
+==========================================================
+
+ClientRequest (body des endpoints POST/PUT /clients)
+---------------------------------------------------
+{
+	"nom": string,
+	"prenom": string,
+	"dateNaissance": string (format "YYYY-MM-DD"),
+	"adresse": string,
+	"email": string,
+	"telephone": string
+}
+
+MouvementRequest (body des endpoints POST /crediter et /debiter)
+---------------------------------------------------------------
+{
+	"montant": number,
+	"dateMouvement": string (format ISO 8601, ex: "2025-09-27T10:00:00Z"),
+	"description": string
+}
+
+ClientResponse (retour des endpoints GET/POST/PUT /clients)
+----------------------------------------------------------
+{
+	"id": int,
+	"matricule": string,
+	"nom": string,
+	"prenom": string,
+	"dateNaissance": string (format "YYYY-MM-DD"),
+	"adresse": string,
+	"email": string,
+	"telephone": string,
+	"dateCreation": string (format ISO 8601)
+}
+
+ClientListResponse (retour GET /clients et /clients/search)
+----------------------------------------------------------
+{
+	"clients": [ClientResponse, ...],
+	"count": int,
+	"message": string
+}
+
+SuccessResponse (retour des endpoints de suppression ou d'opération réussie)
+---------------------------------------------------------------------------
+{
+	"message": string,
+	"success": true
+}
+
+ErrorResponse (retour en cas d'erreur)
+-------------------------------------
+{
+	"error": string,
+	"success": false
+}
+
+SoldeResponse (retour des endpoints de calcul de solde ou d'intérêts)
+---------------------------------------------------------------------
+{
+	"solde": number,
+	"message": string
+}
+
+ComptesClientResponse (retour possible pour une synthèse des comptes d'un client)
+-------------------------------------------------------------------------------
+{
+	"clientId": int,
+	"numeroCompteCourant": string,
+	"soldeCompteCourant": number,
+	"numeroCompteDepot": string,
+	"soldeCompteDepot": number,
+	"message": string
+}
+
 http://localhost:8090/compte-management-1.0-SNAPSHOT/api
 
 ==============================

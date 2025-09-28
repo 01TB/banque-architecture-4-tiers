@@ -8,6 +8,7 @@ import java.time.Instant;
 @Table(name = "configuration_compte_depot", schema = "public")
 public class ConfigurationCompteDepot {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

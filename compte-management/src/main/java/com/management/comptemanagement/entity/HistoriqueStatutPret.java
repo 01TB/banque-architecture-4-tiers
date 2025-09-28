@@ -8,6 +8,7 @@ import java.time.Instant;
 @Table(name = "historique_statut_pret", schema = "public")
 public class HistoriqueStatutPret {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
