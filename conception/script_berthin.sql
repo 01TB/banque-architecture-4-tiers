@@ -1,7 +1,7 @@
 -- DATABASE = banque_berthin
 
 CREATE TABLE client(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    matricule VARCHAR(50) NOT NULL,
    nom VARCHAR(255) NOT NULL,
    prenom VARCHAR(255) NOT NULL,
@@ -15,13 +15,13 @@ CREATE TABLE client(
 );
 
 CREATE TABLE statut_compte(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    libelle VARCHAR(50) NOT NULL, -- Actif, Fermé, Bloqué
    PRIMARY KEY(id)
 );
 
 CREATE TABLE compte_depot(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    numero_compte VARCHAR(50) NOT NULL,
    date_ouverture TIMESTAMP NOT NULL,
    date_fermeture TIMESTAMP,
@@ -35,7 +35,7 @@ CREATE TABLE compte_depot(
 );
 
 CREATE TABLE pret(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    montant_pret NUMERIC(15,2) NOT NULL,
    taux_interet_annuel NUMERIC(15,2) NOT NULL,
    periodicite_remboursement INTEGER NOT NULL,
@@ -47,13 +47,13 @@ CREATE TABLE pret(
 );
 
 CREATE TABLE statut_pret(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    libelle VARCHAR(50), -- Actif, Annulé, Fermé
    PRIMARY KEY(id)
 );
 
 CREATE TABLE configuration_compte_depot(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    taux_interet_annuel DOUBLE PRECISION NOT NULL,
    limite_retrait_mensuel INTEGER NOT NULL,
    pourcentage_max_retrait DOUBLE PRECISION NOT NULL,
@@ -64,21 +64,21 @@ CREATE TABLE configuration_compte_depot(
 );
 
 CREATE TABLE type_mouvement_compte_depot(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    libelle VARCHAR(50) NOT NULL, -- Dépôt, Retrait, Obtention d'intérêts
    PRIMARY KEY(id),
    UNIQUE(libelle)
 );
 
 CREATE TABLE type_mouvement_compte_courant(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    libelle VARCHAR(50) NOT NULL, -- Débit, Crédit
    PRIMARY KEY(id),
    UNIQUE(libelle)
 );
 
 CREATE TABLE historique_statut_pret(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    date_modification TIMESTAMP NOT NULL,
    id_statut INTEGER NOT NULL,
    id_pret INTEGER NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE historique_statut_pret(
 );
 
 CREATE TABLE compte_courant(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    numero_compte VARCHAR(50)  NOT NULL,
    solde NUMERIC(15,2) NOT NULL,
    date_ouverture TIMESTAMP NOT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE compte_courant(
 );
 
 CREATE TABLE mouvement_compte_courant(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    montant NUMERIC(15,2) NOT NULL,
    description TEXT NOT NULL,
    date_mouvement TIMESTAMP NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE mouvement_compte_courant(
 );
 
 CREATE TABLE mouvement_compte_depot(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    montant NUMERIC(15,2) NOT NULL,
    description TEXT NOT NULL,
    date_mouvement TIMESTAMP NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE mouvement_compte_depot(
 );
 
 CREATE TABLE remboursement_pret(
-   id INTEGER,
+   id INTEGER GENERATED ALWAYS AS IDENTITY,
    montant_rembourse NUMERIC(15,2) NOT NULL,
    interet_paye NUMERIC(15,2) NOT NULL,
    date_paiement TIMESTAMP NOT NULL,
