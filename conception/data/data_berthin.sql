@@ -112,16 +112,16 @@ INSERT INTO remboursement_pret (id, montant_rembourse, interet_paye, date_paieme
 
 -- Vérification des séquences (si vous utilisez des séquences pour les IDs auto-générés)
 -- Note: Si vos IDs sont auto-incrémentés, vous devrez peut-être réinitialiser les séquences
--- SELECT SETVAL('client_id_seq', (SELECT MAX(id) FROM client));
--- SELECT SETVAL('statut_compte_id_seq', (SELECT MAX(id) FROM statut_compte));
--- SELECT SETVAL('statut_pret_id_seq', (SELECT MAX(id) FROM statut_pret));
--- SELECT SETVAL('type_mouvement_compte_courant_id_seq', (SELECT MAX(id) FROM type_mouvement_compte_courant));
--- SELECT SETVAL('type_mouvement_compte_depot_id_seq', (SELECT MAX(id) FROM type_mouvement_compte_depot));
--- SELECT SETVAL('compte_courant_id_seq', (SELECT MAX(id) FROM compte_courant));
--- SELECT SETVAL('compte_depot_id_seq', (SELECT MAX(id) FROM compte_depot));
--- SELECT SETVAL('pret_id_seq', (SELECT MAX(id) FROM pret));
--- SELECT SETVAL('configuration_compte_depot_id_seq', (SELECT MAX(id) FROM configuration_compte_depot));
--- SELECT SETVAL('mouvement_compte_courant_id_seq', (SELECT MAX(id) FROM mouvement_compte_courant));
--- SELECT SETVAL('mouvement_compte_depot_id_seq', (SELECT MAX(id) FROM mouvement_compte_depot));
--- SELECT SETVAL('historique_statut_pret_id_seq', (SELECT MAX(id) FROM historique_statut_pret));
--- SELECT SETVAL('remboursement_pret_id_seq', (SELECT MAX(id) FROM remboursement_pret));
+SELECT SETVAL('client_id_seq', (SELECT MAX(id) FROM client));
+SELECT SETVAL('statut_compte_id_seq', (SELECT MAX(id) FROM statut_compte));
+SELECT SETVAL('statut_pret_id_seq', (SELECT MAX(id) FROM statut_pret));
+SELECT SETVAL('type_mouvement_compte_courant_id_seq', (SELECT MAX(id) FROM type_mouvement_compte_courant));
+SELECT SETVAL('type_mouvement_compte_depot_id_seq', (SELECT MAX(id) FROM type_mouvement_compte_depot));
+SELECT SETVAL('compte_courant_id_seq', (SELECT MAX(id) FROM compte_courant));
+SELECT SETVAL('compte_depot_id_seq', (SELECT MAX(id) FROM compte_depot));
+SELECT SETVAL('pret_id_seq', (SELECT MAX(id) FROM pret));
+SELECT SETVAL('configuration_compte_depot_id_seq', (SELECT MAX(id) FROM configuration_compte_depot));
+SELECT SETVAL('mouvement_compte_courant_id_seq', (SELECT MAX(id) FROM mouvement_compte_courant));
+SELECT SETVAL('mouvement_compte_depot_id_seq', (SELECT MAX(id) FROM mouvement_compte_depot));
+SELECT SETVAL('historique_statut_pret_id_seq', (SELECT MAX(id) FROM historique_statut_pret));
+SELECT SETVAL('remboursement_pret_id_seq', (SELECT MAX(id) FROM remboursement_pret));

@@ -63,7 +63,11 @@ public class DashboardController {
                             Map.class
                     );
                     if (ccResponse != null) {
-                        totalComptesCourants += (Double) ccResponse.get("solde");
+                        if (ccResponse.get("solde") instanceof Integer) {
+                            totalComptesCourants += (Integer) ccResponse.get("solde");
+                        } else if (ccResponse.get("solde") instanceof Double) {
+                            totalComptesCourants += (Double) ccResponse.get("solde");
+                        }
                     }
 
                     // Solde compte dépôt
@@ -72,7 +76,11 @@ public class DashboardController {
                             Map.class
                     );
                     if (cdResponse != null) {
-                        totalComptesDepot += (Double) cdResponse.get("solde");
+                        if (cdResponse.get("solde") instanceof Integer) {
+                            totalComptesDepot += (Integer) cdResponse.get("solde");
+                        } else if (cdResponse.get("solde") instanceof Double) {
+                            totalComptesDepot += (Double) cdResponse.get("solde");
+                        }
                     }
 
                     // Intérêts compte dépôt
@@ -80,7 +88,8 @@ public class DashboardController {
                             API_BASE_URL + "/comptes-depot/client/" + clientId + "/interets",
                             Map.class
                     );
-                    if (interetsResponse != null) {
+
+                    if (interetsResponse != null && !interetsResponse.isEmpty()) {
                         totalInterets += (Double) interetsResponse.get("solde");
                     }
 
@@ -90,7 +99,11 @@ public class DashboardController {
                             Map.class
                     );
                     if (pretsResponse != null) {
-                        totalPrets += (Double) pretsResponse.get("solde");
+                        if (pretsResponse.get("solde") instanceof Integer) {
+                            totalPrets += (Integer) pretsResponse.get("solde");
+                        } else if (pretsResponse.get("solde") instanceof Double) {
+                            totalPrets += (Double) pretsResponse.get("solde");
+                        }
                     }
                 }
 
@@ -102,7 +115,7 @@ public class DashboardController {
             }
 
         } catch (Exception e) {
-            model.addAttribute("error", "Erreur lors du chargement du dashboard");
+            model.addAttribute("error", e.getMessage());
         }
 
         return "dashboard";
