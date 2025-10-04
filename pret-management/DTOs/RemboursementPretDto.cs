@@ -9,6 +9,8 @@ public class RemboursementPretDto
     public decimal InteretPaye { get; set; }
     public DateTime DatePaiement { get; set; }
     public int IdPret { get; set; }
+    public int IdMouvementCompteCourant { get; set; }
+    public MouvementCompteCourantDto? MouvementCompteCourant { get; set; }
 }
 
 public class CreateRemboursementDto
@@ -26,4 +28,6 @@ public class CreateRemboursementDto
     
     [Required(ErrorMessage = "La date de paiement est requise")]
     public DateTime DatePaiement { get; set; }
+    
+    public string? Description { get; set; }
 }

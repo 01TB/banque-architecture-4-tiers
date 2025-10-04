@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pret-management")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c09cd881f64ce220b264163fc0a2987a06f52fce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bfafa7c3e254f169367cf17138debc20bbae0b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("pret-management")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pret-management")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

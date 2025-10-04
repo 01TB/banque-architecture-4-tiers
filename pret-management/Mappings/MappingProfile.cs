@@ -8,17 +8,19 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        // Mapping pour Pret
+        // Mapping existants...
         CreateMap<Pret, PretDto>();
         CreateMap<CreatePretDto, Pret>();
         CreateMap<UpdatePretDto, Pret>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
-        // Mapping pour Client
         CreateMap<Client, ClientDto>();
-
-        // Mapping pour Remboursement
+        
+        // Nouveaux mappings pour Remboursement et Mouvement
         CreateMap<RemboursementPret, RemboursementPretDto>();
         CreateMap<CreateRemboursementDto, RemboursementPret>();
+        
+        CreateMap<MouvementCompteCourant, MouvementCompteCourantDto>();
+        CreateMap<CreateMouvementCompteCourantDto, MouvementCompteCourant>();
     }
 }

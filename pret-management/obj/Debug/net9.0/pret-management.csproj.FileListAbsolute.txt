@@ -129,3 +129,5 @@ D:\Dossier Tsitohaina\ITU\L3\Programmation\Banque\banque-architecture-4-tiers\pr
 D:\Dossier Tsitohaina\ITU\L3\Programmation\Banque\banque-architecture-4-tiers\pret-management\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\Dossier Tsitohaina\ITU\L3\Programmation\Banque\banque-architecture-4-tiers\pret-management\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
 D:\Dossier Tsitohaina\ITU\L3\Programmation\Banque\banque-architecture-4-tiers\pret-management\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\Dossier Tsitohaina\ITU\L3\Programmation\Banque\banque-architecture-4-tiers\pret-management\bin\Debug\net9.0\AutoMapper.dll
+D:\Dossier Tsitohaina\ITU\L3\Programmation\Banque\banque-architecture-4-tiers\pret-management\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
