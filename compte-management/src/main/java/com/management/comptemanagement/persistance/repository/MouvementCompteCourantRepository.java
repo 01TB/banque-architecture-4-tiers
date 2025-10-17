@@ -12,4 +12,6 @@ public interface MouvementCompteCourantRepository {
     MouvementCompteCourant save(MouvementCompteCourant mouvementCompteCourant);
     MouvementCompteCourant update(MouvementCompteCourant mouvementCompteCourant);
     void delete(int id);
+
+    List<MouvementCompteCourant> findByIdCompteCourant(int idCompteCourant);
 }

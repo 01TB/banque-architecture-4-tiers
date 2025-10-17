@@ -1,9 +1,11 @@
 package com.management.comptemanagement.persistance.implementation;
 
+import com.management.comptemanagement.entity.CompteCourant;
 import com.management.comptemanagement.entity.MouvementCompteCourant;
 import com.management.comptemanagement.persistance.repository.MouvementCompteCourantRepository;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
@@ -42,6 +44,18 @@ public class MouvementCompteCourantRepositoryImp implements MouvementCompteCoura
         MouvementCompteCourant mouvementCompteCourant = findById(id);
         if (mouvementCompteCourant != null) {
             em.remove(mouvementCompteCourant);
+        }
+    }
+
+    @Override
+    public List<MouvementCompteCourant> findByIdCompteCourant(int idCompteCourant) {
+        TypedQuery<MouvementCompteCourant> query = em.createQuery(
+                "SELECT m FROM MouvementCompteCourant m WHERE m.idCompteCourant.id = :idCompteCourant", MouvementCompteCourant.class);
+        query.setParameter("idCompteCourant", idCompteCourant);
+        try {
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
         }
     }
 }
