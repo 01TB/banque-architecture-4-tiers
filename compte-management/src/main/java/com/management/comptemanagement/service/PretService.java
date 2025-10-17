@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 @Stateless
 public class PretService {
 
+    private static final int TYPE_MOUVEMENT_DEBIT = 2;
+
     @EJB
     private PretRepository pretRepository;
 
