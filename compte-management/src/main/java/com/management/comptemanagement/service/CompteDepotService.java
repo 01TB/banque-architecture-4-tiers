@@ -18,6 +18,8 @@ import java.util.List;
 @Stateless
 public class CompteDepotService {
 
+    private static final int STATUT_COMPTE_ACTIF = 1;
+
     private static final int TYPE_MOUVEMENT_DEPOT = 1;
     private static final int TYPE_MOUVEMENT_RETRAIT = 2;
 
@@ -185,6 +187,11 @@ public class CompteDepotService {
             throw new EntityNotFoundException("Compte dépôt non trouvé pour le client ID: " + idClient);
         }
 
+        // Vérifier si le compte est actif
+        if (compte.getIdStatut().getId().compareTo(STATUT_COMPTE_ACTIF) != 0) {
+            throw new IllegalStateException("Impossible d'effectuer l'opération : le compte n'est pas actif");
+        }
+
         // Validation du montant
         if (montant == null || montant.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Le montant doit être positif");
@@ -214,6 +221,11 @@ public class CompteDepotService {
         CompteDepot compte = compteDepotRepository.findByIdClient(idClient);
         if (compte == null) {
             throw new EntityNotFoundException("Compte dépôt non trouvé pour le client ID: " + idClient);
+        }
+
+        // Vérifier si le compte est actif
+        if (compte.getIdStatut().getId().compareTo(STATUT_COMPTE_ACTIF) != 0) {
+            throw new IllegalStateException("Impossible d'effectuer l'opération : le compte n'est pas actif");
         }
 
         // Validation du montant
@@ -262,5 +274,39 @@ public class CompteDepotService {
         mouvement.setIdCompteDepot(compte);
 
         mouvementCompteDepotRepository.save(mouvement);
+    }
+
+    /**
+     * (15) Historique des mouvements du compte dépôt d'un client
+     * @param idClient ID du client
+     */
+    public List<MouvementCompteDepot> historiqueMouvementCompteDepot(int idClient) {
+
+        // Vérifier que le compte dépôt existe pour le client
+        CompteDepot compte = compteDepotRepository.findByIdClient(idClient);
+        if (compte == null) {
+            throw new EntityNotFoundException("Compte dépôt non trouvé pour le client ID: " + idClient);
+        }
+
+        // Vérifier si le compte est actif
+        if (compte.getIdStatut().getId().compareTo(STATUT_COMPTE_ACTIF) != 0) {
+            throw new IllegalStateException("Impossible d'effectuer l'opération : le compte n'est pas actif");
+        }
+
+        // Obtenir les mouvements du compte dépôt
+        return mouvementCompteDepotRepository.findByIdCompteDepot(compte.getId());
+    }
+
+    /**
+     * Récupère le compte dépôt d'un client
+     * @param idClient ID du client
+     * @return Compte dépôt du client
+     */
+    public CompteDepot getCompteDepotByClientId(int idClient) {
+        CompteDepot compte = compteDepotRepository.findByIdClient(idClient);
+        if (compte == null) {
+            throw new EntityNotFoundException("Compte dépôt non trouvé pour le client ID: " + idClient);
+        }
+        return compte;
     }
 }

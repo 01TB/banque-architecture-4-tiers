@@ -294,6 +294,26 @@ Schéma JSON (erreur) :
 	"success": false
 }
 
+GET /comptes-courants/client/{idClient}/historique-mouvements
+Arguments : idClient (path), optional query params: fromDate (ISO 8601), toDate (ISO 8601), type (int)
+Fonction : Récupère l'historique des mouvements du compte courant pour le client donné. 
+Retourne : Liste de MouvementResponse ou ErrorResponse
+Schéma JSON (succès) - MouvementResponse:
+[
+	{
+		"idMouvement": int,
+		"montant": number,
+		"description": string,
+		"dateMouvement": string (ISO 8601),
+		"typeMouvement": string
+	}
+]
+Schéma JSON (erreur) :
+{
+	"error": "Compte courant non trouvé ou erreur lors de la récupération",
+	"success": false
+}
+
 ==============================
 CompteDepotController
 ==============================
@@ -371,6 +391,33 @@ Schéma JSON (succès) :
 Schéma JSON (erreur) :
 {
 	"error": "Erreur lors du débit",
+	"success": false
+}
+
+GET /comptes-depot/client/{idClient}/historique-mouvements
+Arguments : idClient (path), optional query params: fromDate (ISO 8601), toDate (ISO 8601), type (int)
+Fonction : Récupère l'historique des mouvements du compte dépôt pour le client donné. 
+Retourne : HistoriqueMouvementsDepotResponse ou ErrorResponse
+Schéma JSON (succès) - HistoriqueMouvementsDepotResponse :
+{
+	"idClient": int,
+	"numeroCompte": string,
+	"soldeBrut": number,
+	"soldeReel": number,
+	"interetsCumules": number,
+	"mouvements": [
+		{
+			"idMouvement": int,
+			"montant": number,
+			"description": string,
+			"dateMouvement": string (ISO 8601),
+			"typeMouvement": string,
+		}
+	]
+}
+Schéma JSON (erreur) :
+{
+	"error": "Compte dépôt non trouvé ou erreur lors de la récupération",
 	"success": false
 }
 

@@ -22,6 +22,9 @@
         - Conditions : 
             - Solde suffisante du compte courant pour pouvoir le faire
         - updater la solde du compte courant après chaque mouvement
+    - (14) Historique des mouvements du compte courant
+        - Arguments :
+            - idClient
         
 
 - CompteDepotService
@@ -60,6 +63,9 @@
                 - (10) solde réelle en compte dépôt (à l'instant T)
             - Utiliser l'intérêt annuelle dans la dernière configuration_compte_depot
                 - celle dans la date_application est la plus récente
+    - (15) Historique des mouvements du compte dépôt
+        - Arguments :
+            - idClient
 
 ClientService
     - (13) Créer un nouveau client

@@ -126,11 +126,10 @@ public class CompteCourantService {
     }
 
     /**
-     * (10) Historique du compte courant d'un client
+     * (14) Historique des mouvements du compte courant d'un client
      * @param idClient ID du client
      */
-
-    public List<MouvementCompteCourant> debiterCompteCourant(int idClient) {
+    public List<MouvementCompteCourant> historiqueMouvementCompteCourant(int idClient) {
 
         // Vérifier que le compte courant existe pour le client
         CompteCourant compte = compteCourantRepository.findByIdClient(idClient);

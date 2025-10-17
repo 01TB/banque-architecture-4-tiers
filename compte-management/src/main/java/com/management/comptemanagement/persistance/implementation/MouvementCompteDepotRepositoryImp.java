@@ -50,7 +50,7 @@ public class MouvementCompteDepotRepositoryImp implements MouvementCompteDepotRe
     @Override
     public List<MouvementCompteDepot> findByIdCompteDepot(int idCompteDepot) {
         TypedQuery<MouvementCompteDepot> query = em.createQuery(
-                "SELECT m FROM MouvementCompteDepot m WHERE m.idCompteDepot.id = :idCompteDepot ORDER BY m.dateMouvement",
+                "SELECT m FROM MouvementCompteDepot m WHERE m.idCompteDepot.id = :idCompteDepot ORDER BY m.dateMouvement DESC",
                 MouvementCompteDepot.class);
         query.setParameter("idCompteDepot", idCompteDepot);
         return query.getResultList();

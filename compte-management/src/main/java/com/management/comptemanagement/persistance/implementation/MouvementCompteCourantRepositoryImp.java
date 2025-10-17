@@ -50,7 +50,7 @@ public class MouvementCompteCourantRepositoryImp implements MouvementCompteCoura
     @Override
     public List<MouvementCompteCourant> findByIdCompteCourant(int idCompteCourant) {
         TypedQuery<MouvementCompteCourant> query = em.createQuery(
-                "SELECT m FROM MouvementCompteCourant m WHERE m.idCompteCourant.id = :idCompteCourant", MouvementCompteCourant.class);
+                "SELECT m FROM MouvementCompteCourant m WHERE m.idCompteCourant.id = :idCompteCourant ORDER BY m.dateMouvement DESC", MouvementCompteCourant.class);
         query.setParameter("idCompteCourant", idCompteCourant);
         try {
             return query.getResultList();
