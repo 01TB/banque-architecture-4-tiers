@@ -1,5 +1,6 @@
 package com.management.comptemanagement.persistance.implementation;
 
+import com.management.comptemanagement.entity.MouvementCompteCourant;
 import com.management.comptemanagement.entity.Pret;
 import com.management.comptemanagement.persistance.repository.PretRepository;
 import jakarta.ejb.Stateless;
@@ -58,6 +59,18 @@ public class PretRepositoryImp implements PretRepository {
             return result != null ? result : BigDecimal.ZERO;
         } catch (NoResultException e) {
             return BigDecimal.ZERO;
+        }
+    }
+
+    @Override
+    public List<Pret> findPretsByClientId(int idClient) {
+        TypedQuery<Pret> query = em.createQuery(
+                "SELECT p FROM Pret p WHERE p.idClient.id = :idClient", Pret.class);
+        query.setParameter("idClient", idClient);
+        try {
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
         }
     }
 }

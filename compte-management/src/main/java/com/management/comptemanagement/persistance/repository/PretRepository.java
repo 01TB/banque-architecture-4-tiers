@@ -15,4 +15,5 @@ public interface PretRepository {
     void delete(int id);
 
     BigDecimal findSommePretsByClientId(int idClient);
+    List<Pret> findPretsByClientId(int idClient);
 }
