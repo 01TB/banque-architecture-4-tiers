@@ -7,9 +7,12 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 
 @Stateless
 public class CompteCourantService {
+
+    private static final int STATUT_COMPTE_ACTIF = 1;
 
     private static final int TYPE_MOUVEMENT_CREDIT = 1;
     private static final int TYPE_MOUVEMENT_DEBIT = 2;
@@ -95,7 +98,7 @@ public class CompteCourantService {
         }
 
         // Vérifier si le compte est actif
-        if (!"Actif".equals(compte.getIdStatut().getLibelle())) {
+        if (compte.getIdStatut().getId().compareTo(STATUT_COMPTE_ACTIF) != 0) {
             throw new IllegalStateException("Impossible d'effectuer l'opération : le compte n'est pas actif");
         }
 
@@ -120,5 +123,27 @@ public class CompteCourantService {
         mouvement.setIdCompteCourant(compte);
 
         mouvementCompteCourantRepository.save(mouvement);
+    }
+
+    /**
+     * (10) Historique du compte courant d'un client
+     * @param idClient ID du client
+     */
+
+    public List<MouvementCompteCourant> debiterCompteCourant(int idClient) {
+
+        // Vérifier que le compte courant existe pour le client
+        CompteCourant compte = compteCourantRepository.findByIdClient(idClient);
+        if (compte == null) {
+            throw new EntityNotFoundException("Compte courant non trouvé pour le client ID: " + idClient);
+        }
+
+        // Vérifier si le compte est actif
+        if (compte.getIdStatut().getId().compareTo(STATUT_COMPTE_ACTIF) != 0) {
+            throw new IllegalStateException("Impossible d'effectuer l'opération : le compte n'est pas actif");
+        }
+
+        // Obtenir les mouvements du compte courant
+        return mouvementCompteCourantRepository.findByIdCompteCourant(compte.getId());
     }
 }
