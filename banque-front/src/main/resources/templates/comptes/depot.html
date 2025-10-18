@@ -152,6 +152,56 @@
     </div>
   </div>
 
+  <!-- Historique des mouvements -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Historique des mouvements</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Montant</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="mouvement : ${historique}">
+                <td th:text="${mouvement.dateMouvement}">
+                  27/09/2025 10:00
+                </td>
+                <td th:text="${mouvement.description}">Dépôt initial</td>
+                <td>
+                    <span th:if="${mouvement.typeMouvement != null && mouvement.typeMouvement.toLowerCase().contains('retrait')}"
+                          class="badge bg-success text-dark" th:text="${mouvement.typeMouvement}">Retrait</span>
+                    <span th:if="${mouvement.typeMouvement != null && mouvement.typeMouvement.toLowerCase().contains('dépôt')}"
+                          class="badge bg-danger text-dark" th:text="${mouvement.typeMouvement}">Dépôt</span>
+                    <span th:if="${mouvement.typeMouvement != null && (!mouvement.typeMouvement.toLowerCase().contains('retrait') && !mouvement.typeMouvement.toLowerCase().contains('dépôt'))}"
+                          class="badge bg-warning text-dark" th:text="${mouvement.typeMouvement != null ? mouvement.typeMouvement : 'N/A'}">Obtention d'intérêts</span>
+                </td>
+                <td th:class="${mouvement.typeMouvement != null && !mouvement.typeMouvement.toLowerCase().contains('retrait')} ? 'text-success' : 'text-danger'"
+                    th:text="${(mouvement.typeMouvement != null && !mouvement.typeMouvement.toLowerCase().contains('retrait')) ?
+                                    ('+ ' + #numbers.formatDecimal(mouvement.montant, 1, 2) + ' €') :
+                                    ('- ' + #numbers.formatDecimal(mouvement.montant, 1, 2) + ' €')}">
+                  + 100.00 €
+                </td>
+              </tr>
+              <tr th:if="${historique.isEmpty()}">
+                <td colspan="4" class="text-center">Aucun mouvement trouvé</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Message d'erreur -->
   <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
     <span th:text="${error}">Erreur</span>

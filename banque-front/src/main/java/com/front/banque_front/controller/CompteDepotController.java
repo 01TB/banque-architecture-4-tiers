@@ -49,8 +49,21 @@ public class CompteDepotController {
             );
             model.addAttribute("soldeReel", soldeReel);
 
+            // Historique des mouvements
+            Map<String, Object> historiqueResponse = restTemplate.getForObject(
+                    API_BASE_URL + "/comptes-depot/client/" + idClient + "/historique-mouvements",
+                    Map.class
+            );
+
+            List<Map<String, Object>> historique = new ArrayList<>();
+            if (historiqueResponse != null && historiqueResponse.containsKey("mouvements")) {
+                historique = (List<Map<String, Object>>) historiqueResponse.get("mouvements");
+            }
+            model.addAttribute("historique", historique);
+
         } catch (Exception e) {
             model.addAttribute("error", "Compte dépôt non trouvé");
+            model.addAttribute("historique", new ArrayList<>());
         }
 
         return "comptes/depot";

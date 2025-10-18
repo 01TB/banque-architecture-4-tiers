@@ -35,8 +35,16 @@ public class CompteCourantController {
             );
             model.addAttribute("solde", soldeResponse);
 
+            // Historique des mouvements
+            List<Map<String, Object>> historique = Arrays.asList(restTemplate.getForObject(
+                    API_BASE_URL + "/comptes-courants/client/" + idClient + "/historique-mouvements",
+                    Map[].class
+            ));
+            model.addAttribute("historique", historique != null ? historique : new ArrayList<>());
+
         } catch (Exception e) {
             model.addAttribute("error", "Compte courant non trouvé");
+            model.addAttribute("historique", new ArrayList<>());
         }
 
         return "comptes/courant";
