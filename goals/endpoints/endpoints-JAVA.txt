@@ -469,3 +469,119 @@ Schéma JSON (erreur) :
 	"error": "Erreur lors de la création du prêt",
 	"success": false
 }
+
+==============================
+UtilisateurController
+==============================
+
+
+POST /utilisateurs/login
+Arguments : LoginRequest (body)
+Fonction : Authentifie un utilisateur avec matricule et mot de passe
+Retourne : LoginResponse (succès) ou ErrorResponse
+Schéma JSON d'entrée (LoginRequest) :
+{
+	"matricule": string,
+	"password": string
+}
+
+Schéma JSON de sortie (succès) (LoginResponse) :
+{
+	"message": "Connexion réussie",
+	"utilisateur": {
+		"id": int,
+		"matricule": string,
+		"role": int,
+		"idDirection": {
+			"id": int,
+			"niveau": int,
+			"libelle": string
+		}
+		// Note: le champ `password` n'est pas retourné pour des raisons de sécurité
+	}
+}
+
+Schéma JSON (erreur) :
+{
+	"error": "Matricule ou mot de passe incorrect",
+	"success": false
+}
+
+POST /utilisateurs/logout
+Arguments : aucun (body optionnel vide)
+Fonction : Termine la session de l'utilisateur connecté
+Retourne : SuccessResponse (succès) ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"message": "Déconnexion réussie",
+	"success": true
+}
+
+Schéma JSON (erreur) :
+{
+	"error": "Aucune session active",
+	"success": false
+}
+
+GET /utilisateurs/session
+Arguments : aucun
+Fonction : Récupère les informations de la session de l'utilisateur connecté
+Retourne : LoginResponse (succès) ou ErrorResponse
+Schéma JSON (succès) :
+{
+	"message": "Session active",
+	"utilisateur": {
+		"id": int,
+		"matricule": string,
+		"role": int,
+		"idDirection": {
+			"id": int,
+			"niveau": int,
+			"libelle": string
+		}
+	}
+}
+
+Schéma JSON (erreur) :
+{
+	"error": "Aucune session active",
+	"success": false
+}
+
+GET /utilisateurs/permissions
+Arguments : aucun
+Fonction : Récupère les données de session incluant l'utilisateur connecté, la liste des directions et la liste des actions/roles
+Retourne : SessionDataResponse (succès) ou ErrorResponse
+Schéma JSON (succès) (SessionDataResponse) :
+{
+	"utilisateur": {
+		"id": int,
+		"matricule": string,
+		"role": int,
+		"idDirection": {
+			"id": int,
+			"niveau": int,
+			"libelle": string
+		}
+	},
+	"directions": [
+		{
+			"id": int,
+			"niveau": int,
+			"libelle": string
+		}
+	],
+	"actionsRoles": [
+		{
+			"id": int,
+			"role": int,
+			"action": string
+		}
+	]
+}
+
+Schéma JSON (erreur) :
+{
+	"error": "Aucune session active",
+	"success": false
+}
