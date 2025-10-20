@@ -440,3 +440,32 @@ Schéma JSON (erreur) :
 	"error": "Aucun prêt trouvé",
 	"success": false
 }
+
+POST /prets
+Arguments : PretRequest (body)
+Fonction : Crée un nouveau prêt pour un client
+Retourne : PretResponse ou ErrorResponse
+Schéma JSON d'entrée (PretRequest) :
+{
+	"idClient": 1,
+	"montantPret": 10000.00,
+	"tauxInteretAnnuel": 5.5,
+	"periodiciteRemboursement": 12,
+	"dateCreation": "2025-09-27T11:00:00Z"
+}
+
+Schéma JSON de sortie (succès) (PretResponse) :
+{
+	"idPret": 1,
+	"montantPret": 10000.00,
+	"tauxInteretAnnuel": 5.5,
+	"periodiciteRemboursement": 12,
+	"dateCreation": "2025-09-27T11:00:00Z",
+	"dateFermeture": null
+}
+
+Schéma JSON (erreur) :
+{
+	"error": "Erreur lors de la création du prêt",
+	"success": false
+}
