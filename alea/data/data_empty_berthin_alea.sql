@@ -128,20 +128,20 @@ SELECT SETVAL('type_mouvement_compte_depot_id_seq', (SELECT MAX(id) FROM type_mo
 
 -- Directions
 INSERT INTO direction (id, niveau, libelle) VALUES
-(1, 1, 'Compte Courant'),
-(2, 1, 'Compte Dépot'),
-(3, 1, 'Pret');
+(1, 1, 'Compte Courant'),  -- 1
+(2, 1, 'Compte Dépot'),    -- 2
+(3, 1, 'Pret');            -- 3
 
 -- ActionRole
 INSERT INTO action_role (id, role, action) VALUES
-(1, 2, 'SAISIE'),
-(2, 4, 'VALIDATION');
+(1, 2, 'SAISIE'),          -- 1
+(2, 4, 'VALIDATION');      -- 2
 
 -- Utilisateurs
 INSERT INTO utilisateur (id, matricule, password, role, id_direction) VALUES
-(1, 'courant1', 'berthin', 2, 1),
-(2, 'courant2', 'berthin', 4, 1),
-(3, 'depot1', 'berthin', 2, 2),
-(4, 'depot2', 'berthin', 4, 2),
-(5, 'pret1', 'berthin', 2, 3);
-(6, 'pret2', 'berthin', 4, 3);
+(1, 'courant1', 'berthin', 2, 1),  -- 1
+(2, 'courant2', 'berthin', 4, 1),  -- 2
+(3, 'depot1', 'berthin', 2, 2),    -- 3
+(4, 'depot2', 'berthin', 4, 2),    -- 4
+(5, 'pret1', 'berthin', 2, 3),     -- 5
+(6, 'pret2', 'berthin', 4, 3);     -- 6

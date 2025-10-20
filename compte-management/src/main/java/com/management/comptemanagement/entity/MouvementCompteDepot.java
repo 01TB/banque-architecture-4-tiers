@@ -30,6 +30,9 @@ public class MouvementCompteDepot {
     @JoinColumn(name = "id_compte_depot", nullable = false)
     private CompteDepot idCompteDepot;
 
+    @Column(name = "actif")
+    private Boolean actif;
+
     public Integer getId() {
         return id;
     }
@@ -77,5 +80,8 @@ public class MouvementCompteDepot {
     public void setIdCompteDepot(CompteDepot idCompteDepot) {
         this.idCompteDepot = idCompteDepot;
     }
+
+    public Boolean getActif() {return actif;}
+    public void setActif(Boolean actif) {this.actif = actif;}
 
 }

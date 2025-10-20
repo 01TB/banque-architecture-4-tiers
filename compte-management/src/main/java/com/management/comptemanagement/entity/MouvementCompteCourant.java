@@ -30,6 +30,9 @@ public class MouvementCompteCourant {
     @JoinColumn(name = "id_compte_courant", nullable = false)
     private CompteCourant idCompteCourant;
 
+    @Column(name = "actif")
+    private Boolean actif;
+
     public Integer getId() {
         return id;
     }
@@ -77,5 +80,9 @@ public class MouvementCompteCourant {
     public void setIdCompteCourant(CompteCourant idCompteCourant) {
         this.idCompteCourant = idCompteCourant;
     }
+
+    public Boolean getActif() {return actif;}
+
+    public void setActif(Boolean actif) {this.actif = actif;}
 
 }

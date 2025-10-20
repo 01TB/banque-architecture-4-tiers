@@ -21,7 +21,7 @@ public class Utilisateur {
     @Column(name = "role", nullable = false)
     private Integer role;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_direction", nullable = false)
     private Direction idDirection;
 
