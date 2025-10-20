@@ -96,7 +96,7 @@ public class UtilisateurController {
         }
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(RedirectAttributes redirectAttributes) {
         try {
             // Appeler l'API de logout

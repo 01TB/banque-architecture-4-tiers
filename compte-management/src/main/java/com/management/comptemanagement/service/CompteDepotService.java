@@ -23,6 +23,8 @@ public class CompteDepotService {
     private static final int TYPE_MOUVEMENT_DEPOT = 1;
     private static final int TYPE_MOUVEMENT_RETRAIT = 2;
 
+    private UtilisateurService utilisateurService;
+
     @EJB
     private CompteDepotRepository compteDepotRepository;
 
@@ -197,6 +199,10 @@ public class CompteDepotService {
             throw new IllegalArgumentException("Le montant doit être positif");
         }
 
+        if (utilisateurService.getUtilisateurConnecte().getRole()<2) {
+            throw new IllegalArgumentException("Role non satisfait de utilisateur");
+        }
+
         TypeMouvementCompteDepot typeMouvement = typeMouvementCompteDepotRepository.findById(TYPE_MOUVEMENT_DEPOT); // Dépôt
 
         // Créer le mouvement
@@ -243,6 +249,10 @@ public class CompteDepotService {
         int retraitsCeMois = mouvementCompteDepotRepository.countRetraitsThisMonth(compte.getId());
         if (retraitsCeMois >= config.getLimiteRetraitMensuel()) {
             throw new IllegalStateException("Limite de retraits mensuels atteinte: " + config.getLimiteRetraitMensuel());
+        }
+
+        if (utilisateurService.getUtilisateurConnecte().getRole()<2) {
+            throw new IllegalArgumentException("Role non satisfait de utilisateur");
         }
 
         // Vérifier le pourcentage maximum de retrait par rapport au solde réel

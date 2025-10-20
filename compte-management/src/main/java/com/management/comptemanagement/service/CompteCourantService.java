@@ -29,6 +29,9 @@ public class CompteCourantService {
     @EJB
     private ClientRepository clientRepository;
 
+    @EJB
+    private UtilisateurService utilisateurService;
+
     /**
      * (1) Calcule le solde brut du compte courant à l'instant T
      * @param idClient ID du client
@@ -58,6 +61,10 @@ public class CompteCourantService {
 
         if (montant == null || montant.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Le montant doit être positif");
+        }
+
+        if (utilisateurService.getUtilisateurConnecte().getRole()<2) {
+            throw new IllegalArgumentException("Role non satisfait de utilisateur");
         }
 
         TypeMouvementCompteCourant typeMouvement = typeMouvementCompteCourantRepository.findById(TYPE_MOUVEMENT_CREDIT); // Crédit
@@ -105,6 +112,10 @@ public class CompteCourantService {
         // Vérifier le solde suffisant
         if (compte.getSolde().compareTo(montant) < 0) {
             throw new IllegalStateException("Solde insuffisant pour effectuer le débit");
+        }
+
+        if (utilisateurService.getUtilisateurConnecte().getRole()<2) {
+            throw new IllegalArgumentException("Role non satisfait de utilisateur");
         }
 
         TypeMouvementCompteCourant typeMouvement = typeMouvementCompteCourantRepository.findById(TYPE_MOUVEMENT_DEBIT); // Débit

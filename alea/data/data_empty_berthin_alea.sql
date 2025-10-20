@@ -18,7 +18,8 @@ INSERT INTO statut_compte (id, libelle) VALUES
 INSERT INTO statut_pret (id, libelle) VALUES
 (1, 'Actif'),
 (2, 'Annulé'),
-(3, 'Fermé');
+(3, 'Fermé'),
+(4, 'En attente');
 
 -- 4. Insertion dans la table type_mouvement_compte_courant
 INSERT INTO type_mouvement_compte_courant (id, libelle) VALUES
@@ -139,9 +140,9 @@ INSERT INTO action_role (id, role, action) VALUES
 
 -- Utilisateurs
 INSERT INTO utilisateur (id, matricule, password, role, id_direction) VALUES
-(1, 'courant1', 'berthin', 2, 1),  -- 1
+(1, 'courant1', 'berthin', 1, 1),  -- 1
 (2, 'courant2', 'berthin', 4, 1),  -- 2
-(3, 'depot1', 'berthin', 2, 2),    -- 3
+(3, 'depot1', 'berthin', 1, 2),    -- 3
 (4, 'depot2', 'berthin', 4, 2),    -- 4
-(5, 'pret1', 'berthin', 2, 3),     -- 5
+(5, 'pret1', 'berthin', 1, 3),     -- 5
 (6, 'pret2', 'berthin', 4, 3);     -- 6

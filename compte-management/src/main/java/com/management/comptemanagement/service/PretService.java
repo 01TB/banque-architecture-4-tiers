@@ -30,6 +30,9 @@ public class PretService {
     @EJB
     private HistoriqueStatutPretRepository historiqueStatutPretRepository;
 
+    @EJB
+    private UtilisateurService utilisateurService;
+
     private static int STATUT_PRET_ACTIF = 1;
 
     /**
@@ -76,6 +79,10 @@ public class PretService {
         historiqueStatutPret.setIdPret(pret);
         historiqueStatutPret.setIdStatut(statutActif);
         historiqueStatutPret.setDateModification(Instant.now());
+
+        if (utilisateurService.getUtilisateurConnecte().getRole()<2) {
+            throw new IllegalArgumentException("Role non satisfait de utilisateur");
+        }
 
         historiqueStatutPret = historiqueStatutPretRepository.save(historiqueStatutPret);
 

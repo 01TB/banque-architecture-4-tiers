@@ -56,7 +56,7 @@ public class UtilisateurController {
         }
     }
 
-    @POST
+    @GET
     @Path("/logout")
     public Response logout() {
         try {
